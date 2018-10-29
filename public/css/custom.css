@@ -1,0 +1,31 @@
+/* CUSTOM CSS */
+/* added by: Virdana */
+
+/* Custom style patch untuk plugin */
+/* Select2 JS (Supaya lebih mirip style template admin) */
+.select2-selection {
+  height: calc(2.09375rem + 2px)!important; 
+  font-size: .8125rem;
+  /*line-height: 1.5;*/
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #e1e5eb !important; 
+  font-weight: 300;
+  will-change: border-color,box-shadow;
+  border-radius: .25rem;
+  box-shadow: none;
+  transition: box-shadow 250ms cubic-bezier(.27,.01,.38,1.06),border 250ms cubic-bezier(.27,.01,.38,1.06);
+} 
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 1.5;
+  /*padding-left: .75rem;*/
+  padding: .4375rem .75rem;
+}
+.select2-selection__arrow {
+  top: 4px!important;
+}
+.select2-results{
+  font-size: .8125rem;
+  font-weight: 500;
+  color: #495057;
+}
