@@ -1,12 +1,10 @@
-@extends('layouts.app_admin')
-
-@section('content')    
+<?php $__env->startSection('content'); ?>    
 
 <!-- Page Header -->
 <div class="page-header row no-gutters py-4">
   <div class="col-12 mb-0">
     <span class="text-uppercase page-subtitle">SI Survei Kepuasan</span>
-    <h3 class="page-title">Data Responden - Mahasiswa</h3>
+    <h3 class="page-title">Data Responden - Alumni</h3>
   </div>
 </div>
 <!-- End Page Header -->
@@ -28,12 +26,7 @@
                 </select>
               </div>
               <div class="form-group mr-sm-2 mb-2">
-                <select name="" id="filterJurusan" class="select2 form-control" title="Tampilkan data berdasarkan jurusan"disabled=""> 
-                  <option></option>
-                </select>
-              </div>
-              <div class="form-group mr-sm-2 mb-2">
-                <select name="" id="filterProdi" class="select2 form-control" title="Tampilkan data berdasarkan prodi"disabled=""> 
+                <select name="" id="filterJurusanProdi" class="select2 form-control" title="Tampilkan data berdasarkan jurusan/prodi"disabled=""> 
                   <option></option>
                 </select>
               </div>
@@ -51,7 +44,7 @@
             </div>
           </div>
         </div>
-        {{-- Datatable --}}
+        
         <div class="row">
           <div class="col-md-12">
             <div class="table-responsive pt-3">
@@ -59,10 +52,9 @@
                 <thead class="">
                   <tr>
                     <th scope="col" class="border-0 no-sort">#</th>
-                    <th scope="col" class="border-0">NIP</th>
-                    <th scope="col" class="border-0">Nama Mahasiswa</th>
-                    <th scope="col" class="border-0">Prodi</th>
-                    <th scope="col" class="border-0">Jurusan</th>
+                    <th scope="col" class="border-0">Nama Alumni</th>
+                    <th scope="col" class="border-0">Email</th>
+                    <th scope="col" class="border-0">Jurusan/Prodi</th>
                     <th scope="col" class="border-0">Fakultas</th>
                     <th scope="col" class="border-0">Tanggal Isi</th>
                     <th scope="col" class="border-0 no-sort">Aksi</th>
@@ -79,41 +71,36 @@
 </div>
 <!-- End Top Referrals Component -->
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@push("style")
+<?php $__env->startPush("style"); ?>
 <!-- <style type="text/css">
   a.report{
     border-radius: 0px !important;
   }
 </style> -->
-@endpush
+<?php $__env->stopPush(); ?>
 
-@section('pagespecificjs') 
+<?php $__env->startSection('pagespecificjs'); ?> 
 <script>
   $(document).ready(function() {
-    var listFakultas = {!! json_encode($list_fakultas) !!};
-    var listJurusan = {!! json_encode($list_jurusan) !!};
-    var listProdi = {!! json_encode($list_prodi) !!};
-    //Preparing initial data for select2 filter prodi, jurusan, dan fakultas  
-    var filterProdi = null;
-    var filterJurusan = null;
+    var listFakultas = <?php echo json_encode($list_fakultas); ?>;
+    var listJurusanProdi = <?php echo json_encode($list_jurusan_prodi); ?>;
+
+    //Preparing initial data for select2 filter jurusan dan fakultas  
+    var filterJurusanProdi = null;
     var filterFakultas = null;
-    dataFilterProdi = $.map(listProdi, function(row, idx) {
-          return {"id": row.pro_nm, "text": row.pro_nm, "pro_kd": row.pro_kd};
-        });
-    dataFilterJurusan = $.map(listJurusan, function(row, idx) {
-          return {"id": row.jur_nm, "text": row.jur_nm, "jur_kd": row.jur_kd};
+    dataFilterJurusanProdi = $.map(listJurusanProdi, function(row, idx) {
+          return {"id": row.jur_nm.trim()+'/'+row.pro_nm.trim(), "text": row.jur_nm.trim()+'/'+row.pro_nm.trim()};
         });
     dataFilterFakultas = $.map(listFakultas, function(row, idx) {
         return {"id": row.fak_skt, "text": row.fak_nm+' ('+row.fak_skt+')', "fak_kd": row.fak_kd};
       });
-    initSelectFilterProdi(dataFilterProdi);
-    initSelectFilterJurusan(dataFilterJurusan);
+    initSelectFilterJurusan(dataFilterJurusanProdi);
     initSelectFilterFakultas(dataFilterFakultas);
     
-    //INISIALISASI SELECT2 FAKULTAS, JURUSAN, & PRODI
+    //INISIALISASI SELECT2 FAKULTAS & JURUSAN
     function initSelectFilterFakultas(data='') {
       data.unshift({'id': '', 'text': ''});
       filterFakultas = $('#filterFakultas').select2({ 
@@ -125,63 +112,32 @@
     }
     function initSelectFilterJurusan(data='') {
       data.unshift({'id': '', 'text': ''});
-      if(filterJurusan != null) {
-        //reinit filterJurusan if already initialized
-        $("#filterJurusan").empty().trigger("change");
+      if(filterJurusanProdi != null) {
+        //reinit filterJurusanProdi if already initialized
+        $("#filterJurusanProdi").empty().trigger("change");
       }
-      filterJurusan = $('#filterJurusan').select2({ 
+      filterJurusanProdi = $('#filterJurusanProdi').select2({ 
         placeholder: "Pilih Jurusan",
         allowClear: true,
         data: data 
       });
-      $('#filterJurusan').val("");
-    }
-    function initSelectFilterProdi(data='') { 
-      data.unshift({'id': '', 'text': ''});
-      if(filterProdi != null) {
-        //reinit filterProdi if already initialized
-        $("#filterProdi").empty().trigger("change");
-      }
-      filterProdi = $('#filterProdi').select2({ 
-        placeholder: "Pilih Prodi",
-        allowClear: true,
-        data: data 
-      });
-      $('#filterProdi').val("");
+      $('#filterJurusanProdi').val("");
     }
     //Event handler untuk onchange select filter fakultas
     $('#filterFakultas').on('change', function(e) {
       if($('#filterFakultas').val()) {
         let data = $('#filterFakultas').select2("data");
-        let filteredJurusan = $.map(listJurusan, function(row, idx) {
+        let filteredJurusanProdi = $.map(listJurusanProdi, function(row, idx) {
           if(row.fak_kd == data[0].fak_kd){
-            return {"id": row.jur_nm, "text": row.jur_nm, "jur_kd": row.jur_kd};
+            return {"id": row.jur_nm.trim()+'/'+row.pro_nm.trim(), "text": row.jur_nm.trim()+'/'+row.pro_nm.trim()};
           }
         });
-        initSelectFilterJurusan(filteredJurusan);
-        $("#filterJurusan").attr("disabled", false);
+        initSelectFilterJurusan(filteredJurusanProdi);
+        $("#filterJurusanProdi").attr("disabled", false);
       }
       else {
-        $("#filterJurusan").attr("disabled", true);
-        $("#filterJurusan").val("");
-      }
-    });
-    //Event handler untuk onchange select filter jurusan
-    $('#filterJurusan').on('change', function(e) {
-      if($('#filterJurusan').val()) {
-        let data = $('#filterJurusan').select2("data");
-        console.log(data);
-        let filteredProdi = $.map(listProdi, function(row, idx) {
-          if(row.jur_kd == data[0].jur_kd){
-            return {"id": row.pro_nm, "text": row.pro_nm};
-          }
-        });
-        initSelectFilterProdi(filteredProdi);
-        $("#filterProdi").attr("disabled", false);
-      }
-      else {
-        $("#filterProdi").attr("disabled", true);
-        $("#filterProdi").val("");
+        $("#filterJurusanProdi").attr("disabled", true);
+        $("#filterJurusanProdi").val("");
       }
     });
 
@@ -200,15 +156,14 @@
       "processing": true,
       "serverSide": true,
       "searchDelay": 800,
-      "order": [[6, 'desc']],
+      "order": [[5, 'desc']],
       "ajax": {
-        url: "{{ url('/responden/mahasiswa/get_datatable') }}",
+        url: "<?php echo e(url('/responden/alumni/get_datatable')); ?>",
         type: "post",
         data: function(d) {
-          d._token = "{{ csrf_token() }}";
+          d._token = "<?php echo e(csrf_token()); ?>";
           d.fakultas = $('#filterFakultas').val() || '';
-          d.jurusan = $('#filterJurusan').val() || '';
-          d.prodi = $('#filterProdi').val() || '';
+          d.jurusan_prodi = $('#filterJurusanProdi').val() || '';
           d.rentang_tanggal = $('#rentang_tanggal').val() || '';
         },
         error: function() {
@@ -223,20 +178,21 @@
       "drawCallback": function(settings) {}
     });
     // Select Filter OnChange Handler
-    $('#rentang_tanggal, #filterFakultas, #filterJurusan, #filterProdi').on("change", function(e){
+    $('#filterJurusanProdi, #filterFakultas, #rentang_tanggal').on("change", function(e){
       if($(this).val()) {
         initDatatable1.clear().draw();
       }
     });
     
     // Clear filter button onclick handler
-    $('#clearFilterBtn').on("click", function() {
-      $('#rentang_tanggal, #filterFakultas, #filterJurusan, #filterProdi').val(null).trigger('change');
+    $('#clearFilterBtn').on("click", function(e) {
+      $('#rentang_tanggal, #filterFakultas, #filterJurusanProdi').val(null).trigger('change');
       if(!$(this).val()) {
         initDatatable1.clear().draw();
-      }
+      } 
     })
 
   }); //End Document Ready
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app_admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

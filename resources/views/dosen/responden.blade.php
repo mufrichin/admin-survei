@@ -160,7 +160,7 @@
       "searchDelay": 800,
       "order": [[5, 'desc']],
       "ajax": {
-        url: "{{ url('/admin/responden/dosen/get_datatable') }}",
+        url: "{{ url('/responden/dosen/get_datatable') }}",
         type: "post",
         data: function(d) {
           d._token = "{{ csrf_token() }}";

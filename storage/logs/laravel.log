@@ -1544,3 +1544,23 @@ Stack trace:
 [2018-10-29 02:28:59] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Maximum execution time of 60 seconds exceeded' in C:\xampp\htdocs\admin-survei\vendor\psr\log\Psr\Log\LoggerInterface.php:20
 Stack trace:
 #0 {main}  
+[2018-10-29 03:47:45] production.ERROR: exception 'ErrorException' with message 'file_get_contents(E:\Virdana\AEGIS\Projects\xampp\htdocs\ptik_um\admin_survei/.env): failed to open stream: No such file or directory' in E:\Virdana\AEGIS\Projects\xampp\htdocs\ptik_um\admin_survei\vendor\laravel\framework\src\Illuminate\Foundation\Console\KeyGenerateCommand.php:95
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'file_get_conten...', 'E:\\Virdana\\AEGI...', 95, Array)
+#1 E:\Virdana\AEGIS\Projects\xampp\htdocs\ptik_um\admin_survei\vendor\laravel\framework\src\Illuminate\Foundation\Console\KeyGenerateCommand.php(95): file_get_contents('E:\\Virdana\\AEGI...')
+#2 E:\Virdana\AEGIS\Projects\xampp\htdocs\ptik_um\admin_survei\vendor\laravel\framework\src\Illuminate\Foundation\Console\KeyGenerateCommand.php(79): Illuminate\Foundation\Console\KeyGenerateCommand->writeNewEnvironmentFileWith('base64:cKiNBWub...')
+#3 E:\Virdana\AEGIS\Projects\xampp\htdocs\ptik_um\admin_survei\vendor\laravel\framework\src\Illuminate\Foundation\Console\KeyGenerateCommand.php(44): Illuminate\Foundation\Console\KeyGenerateCommand->setKeyInEnvironmentFile('base64:cKiNBWub...')
+#4 [internal function]: Illuminate\Foundation\Console\KeyGenerateCommand->fire()
+#5 E:\Virdana\AEGIS\Projects\xampp\htdocs\ptik_um\admin_survei\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php(30): call_user_func_array(Array, Array)
+#6 E:\Virdana\AEGIS\Projects\xampp\htdocs\ptik_um\admin_survei\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php(87): Illuminate\Container\BoundMethod::Illuminate\Container\{closure}()
+#7 E:\Virdana\AEGIS\Projects\xampp\htdocs\ptik_um\admin_survei\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php(31): Illuminate\Container\BoundMethod::callBoundMethod(Object(Illuminate\Foundation\Application), Array, Object(Closure))
+#8 E:\Virdana\AEGIS\Projects\xampp\htdocs\ptik_um\admin_survei\vendor\laravel\framework\src\Illuminate\Container\Container.php(539): Illuminate\Container\BoundMethod::call(Object(Illuminate\Foundation\Application), Array, Array, NULL)
+#9 E:\Virdana\AEGIS\Projects\xampp\htdocs\ptik_um\admin_survei\vendor\laravel\framework\src\Illuminate\Console\Command.php(182): Illuminate\Container\Container->call(Array)
+#10 E:\Virdana\AEGIS\Projects\xampp\htdocs\ptik_um\admin_survei\vendor\symfony\console\Command\Command.php(255): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Illuminate\Console\OutputStyle))
+#11 E:\Virdana\AEGIS\Projects\xampp\htdocs\ptik_um\admin_survei\vendor\laravel\framework\src\Illuminate\Console\Command.php(168): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Illuminate\Console\OutputStyle))
+#12 E:\Virdana\AEGIS\Projects\xampp\htdocs\ptik_um\admin_survei\vendor\symfony\console\Application.php(946): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#13 E:\Virdana\AEGIS\Projects\xampp\htdocs\ptik_um\admin_survei\vendor\symfony\console\Application.php(248): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Foundation\Console\KeyGenerateCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#14 E:\Virdana\AEGIS\Projects\xampp\htdocs\ptik_um\admin_survei\vendor\symfony\console\Application.php(148): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#15 E:\Virdana\AEGIS\Projects\xampp\htdocs\ptik_um\admin_survei\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(122): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#16 E:\Virdana\AEGIS\Projects\xampp\htdocs\ptik_um\admin_survei\artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#17 {main}  

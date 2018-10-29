@@ -1,13 +1,11 @@
-@extends('layouts.app_admin')
-
-@section('content')    
+<?php $__env->startSection('content'); ?>    
 
 <!-- Page Header -->
 <div class="page-header row no-gutters py-4">
   <div class="col-12 text-center text-sm-center mb-0">
-    <img src="{{asset('images/um_logo_blue_text.png')}}" width="240"><br/><br/>
+    <img src="<?php echo e(asset('images/um_logo_blue_text.png')); ?>" width="240"><br/><br/>
     <span class="text-uppercase page-subtitle">SI Survei Kepuasan</span>
-    <h3 class="page-title">Jumlah Responden</h3>
+    <h3 class="page-title">Jumlah Reponden</h3>
   </div>
 </div>
 <!-- End Page Header -->
@@ -17,15 +15,15 @@
   <div class="col-md-4 mb-4">
    <div class="view view-fifth"> 
     <div class="stats-small stats-small--1 card card-small">
-      @if ($count['dosen']==0)
+      <?php if($count['dosen']==0): ?>
       <a class="card-body p-0 d-flex" onclick="data_null()" >
-        @else
-        <a class="card-body p-0 d-flex" href="{{url('responden/dosen')}}" >
-         @endif
+        <?php else: ?>
+        <a class="card-body p-0 d-flex" href="<?php echo e(url('responden/dosen')); ?>" >
+         <?php endif; ?>
          <div class="d-flex flex-column m-auto">
           <div class="stats-small__data text-center">
             <span class="stats-small__label text-uppercase">Dosen</span>
-            <h6 class="stats-small__value count my-3">{{ $count['dosen'] }}</h6>
+            <h6 class="stats-small__value count my-3"><?php echo e($count['dosen']); ?></h6>
             <div class="mask">
               <h2>Lihat Responden</h2>
             </div>
@@ -40,15 +38,15 @@
 <div class="col-md-4 mb-4">
   <div class="view view-fifth"> 
     <div class="stats-small stats-small--1 card card-small">
-      @if ($count['mahasiswa']==0)
+      <?php if($count['mahasiswa']==0): ?>
       <a class="card-body p-0 d-flex" onclick="data_null()" >
-        @else
-        <a class="card-body p-0 d-flex" href="{{url('responden/mahasiswa')}}" >
-         @endif
+        <?php else: ?>
+        <a class="card-body p-0 d-flex" href="<?php echo e(url('responden/mahasiswa')); ?>" >
+         <?php endif; ?>
          <div class="d-flex flex-column m-auto" >
           <div class="stats-small__data text-center">
             <span class="stats-small__label text-uppercase">Mahasiswa</span>
-            <h6 class="stats-small__value count my-3">{{ $count['mahasiswa'] }}</h6>
+            <h6 class="stats-small__value count my-3"><?php echo e($count['mahasiswa']); ?></h6>
             <div class="mask">
               <h2>Lihat Responden</h2>
             </div>
@@ -63,15 +61,15 @@
 <div class="col-md-4 mb-4">
   <div class="view view-fifth"> 
     <div class="stats-small stats-small--1 card card-small">
-      @if ($count['tendik']==0)
+      <?php if($count['tendik']==0): ?>
       <a class="card-body p-0 d-flex" onclick="data_null()" >
-        @else
-        <a class="card-body p-0 d-flex" href="{{url('responden/tendik')}}" >
-         @endif
+        <?php else: ?>
+        <a class="card-body p-0 d-flex" href="<?php echo e(url('responden/tendik')); ?>" >
+         <?php endif; ?>
          <div class="d-flex flex-column m-auto">
           <div class="stats-small__data text-center">
             <span class="stats-small__label text-uppercase">Tenaga Kependidikan</span>
-            <h6 class="stats-small__value count my-3">{{ $count['tendik'] }}</h6>
+            <h6 class="stats-small__value count my-3"><?php echo e($count['tendik']); ?></h6>
             <div class="mask">
               <h2>Lihat Responden</h2>
             </div>
@@ -86,15 +84,15 @@
 <div class="col-md-4 mb-4">
  <div class="view view-fifth"> 
   <div class="stats-small stats-small--1 card card-small">
-   @if ($count['alumni']==0)
+   <?php if($count['alumni']==0): ?>
    <a class="card-body p-0 d-flex" onclick="data_null()" >
-    @else
-    <a class="card-body p-0 d-flex" href="{{url('responden/alumni')}}" >
-     @endif
+    <?php else: ?>
+    <a class="card-body p-0 d-flex" href="<?php echo e(url('responden/alumni')); ?>" >
+     <?php endif; ?>
      <div class="d-flex flex-column m-auto">
       <div class="stats-small__data text-center">
         <span class="stats-small__label text-uppercase">Alumni</span>
-        <h6 class="stats-small__value count my-3">{{ $count['alumni'] }}</h6>
+        <h6 class="stats-small__value count my-3"><?php echo e($count['alumni']); ?></h6>
         <div class="mask">
           <h2>Lihat Responden</h2>
         </div>
@@ -109,15 +107,15 @@
 <div class="col-md-4 mb-4">
  <div class="view view-fifth"> 
   <div class="stats-small stats-small--1 card card-small">
-   @if ($count['pengguna']==0)
+   <?php if($count['pengguna']==0): ?>
    <a class="card-body p-0 d-flex" onclick="data_null()" >
-    @else
-    <a class="card-body p-0 d-flex" href="{{url('responden/pengguna')}}" >
-     @endif
+    <?php else: ?>
+    <a class="card-body p-0 d-flex" href="<?php echo e(url('responden/pengguna')); ?>" >
+     <?php endif; ?>
      <div class="d-flex flex-column m-auto">
       <div class="stats-small__data text-center">
         <span class="stats-small__label text-uppercase">Pengguna</span>
-        <h6 class="stats-small__value count my-3">{{ $count['pengguna'] }}</h6>
+        <h6 class="stats-small__value count my-3"><?php echo e($count['pengguna']); ?></h6>
         <div class="mask">
           <h2>Lihat Responden</h2>
         </div>
@@ -133,17 +131,17 @@
   <div class="view view-fifth"> 
     <div class="stats-small stats-small--1 card card-small">
 
-     @if ($count['mitra']==0)
+     <?php if($count['mitra']==0): ?>
      <a class="card-body p-0 d-flex" onclick="data_null()">
-      @else
-      <a class="card-body p-0 d-flex" href="{{url('responden/mitra')}}">
-       @endif
+      <?php else: ?>
+      <a class="card-body p-0 d-flex" href="<?php echo e(url('responden/mitra')); ?>">
+       <?php endif; ?>
 
        <div class="d-flex flex-column m-auto">
         <div class="stats-small__data text-center">
           
           <span class="stats-small__label text-uppercase">Mitra</span>
-          <h6 class="stats-small__value count my-3">{{ $count['mitra'] }}</h6>
+          <h6 class="stats-small__value count my-3"><?php echo e($count['mitra']); ?></h6>
           <div class="mask">
             <h2>Lihat Responden</h2>
           </div>
@@ -169,13 +167,14 @@
   }
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@push("style")
+<?php $__env->startPush("style"); ?>
 <!-- <style type="text/css">
   a.report{
     border-radius: 0px !important;
   }
 </style> -->
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.app_admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

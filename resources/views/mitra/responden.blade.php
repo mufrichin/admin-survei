@@ -119,7 +119,7 @@
       "searchDelay": 800,
       "order": [[6, 'desc']],
       "ajax": {
-        url: "{{ url('/admin/responden/mitra/get_datatable') }}",
+        url: "{{ url('/responden/mitra/get_datatable') }}",
         type: "post",
         data: function(d) {
           d._token = "{{ csrf_token() }}";
