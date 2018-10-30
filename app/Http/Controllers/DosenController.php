@@ -374,8 +374,8 @@ class DosenController extends Controller
 
   function responden() {
   	$data = array(
-  		'list_fakultas' => $this->getListFakultas(),
-  		'list_jurusan' => $this->getListJurusan(),
+  		'list_fakultas' => getListFakultas(),
+  		'list_jurusan' => getListJurusan(),
   	);
   	return view('dosen/responden', $data);
   }

@@ -279,7 +279,7 @@ function report() {
 
   function responden() {
     $data = array(
-      'list_unit' => $this->getListUnitKerja(),
+      'list_unit' => getListUnitKerja(),
     );
     return view('tendik/responden', $data);
   }

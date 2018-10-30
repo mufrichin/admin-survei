@@ -29,7 +29,7 @@
           <div class="col-12">
             <div class="form-inline">
               <div class="form-group mr-sm-2 mb-2">
-                <select name="sasaran" id="filterSasaran" class="form-control" title="Tampilkan data berdasarkan sasaran ">
+                <select id="filterSasaran" class="form-control" title="Tampilkan data berdasarkan sasaran ">
                   <option value="" selected="" disabled="">Pilih Sasaran</option>
                   <option value="dosen">Dosen</option>
                   <option value="mahasiswa">Mahasiswa</option>

@@ -210,9 +210,9 @@ class MahasiswaController extends Controller
 
   function responden() {
     $data = array(
-      'list_fakultas' => $this->getListFakultas(),
-      'list_jurusan' => $this->getListJurusan(),
-      'list_prodi' => $this->getListProdi(),
+      'list_fakultas' => getListFakultas(),
+      'list_jurusan' => getListJurusan(),
+      'list_prodi' => getListProdi(),
     );
     return view('mahasiswa/responden', $data);
   }

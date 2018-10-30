@@ -18,8 +18,8 @@ class AlumniController extends Controller
 public function index()
 {
   $data = [
-    'list_fakultas' => $this->getListFakultas(),
-    'list_jurusan_prodi' => $this->getListJurusanProdi(),
+    'list_fakultas' => getListFakultas(),
+    'list_jurusan_prodi' => getListJurusanProdi(),
   ];
   return view("alumni/identitas", $data);
 }
@@ -362,8 +362,8 @@ public function report() {
 
   function responden() {
     $data = array(
-      'list_fakultas' => $this->getListFakultas(),
-      'list_jurusan_prodi' => $this->getListJurusanProdi(),
+      'list_fakultas' => getListFakultas(),
+      'list_jurusan_prodi' => getListJurusanProdi(),
     );
     return view('alumni/responden', $data);
   }

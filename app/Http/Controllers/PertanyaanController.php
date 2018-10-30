@@ -18,9 +18,9 @@ class PertanyaanController extends Controller
   public function index() {
     $data = array(
       'list_pertanyaan' => Pertanyaan_angket::all(),
-      'list_fakultas' => $this->getListFakultas(),
-      'list_jurusan' => $this->getListJurusan(),
-      'list_prodi' => $this->getListProdi(),
+      'list_fakultas' => getListFakultas(),
+      'list_jurusan' => getListJurusan(),
+      'list_prodi' => getListProdi(),
     );
     return view('pertanyaan/list_pertanyaan', $data);
   }
