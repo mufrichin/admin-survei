@@ -1,6 +1,6 @@
 <?php
 
-/* Helper function for getting list fakultas, jurusan, prodi, & unit kerja (usually for select2) */
+/* Helper function for getting list fakultas, jurusan, prodi, & unit kerja (usually needed for select options) */
 
 if (!function_exists('getListFakultas')) {
   //GET LIST FAKULTAS, JURUSAN, PRODI, & UNIT KERJA
