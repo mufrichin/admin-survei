@@ -62,15 +62,16 @@ class PertanyaanController extends Controller
     if($request['kd_pertanyaan']) {
       $timestamp = date("Y-m-d H:i:s");
       $data = [];
-      $i = 0;
       foreach ($request['kd_pertanyaan'] as $key => $value) {
-        $data[$key] = [
-          'sasaran' => $request['sasaran'][$key],
-          'kd_pertanyaan' => $request['kd_pertanyaan'][$key],
-          'pertanyaan' => $request['pertanyaan'][$key],
-          'created_at' => $timestamp
-        ];
-        $i++;
+        //jika kd_pertanyaan tidak kosong maka masukkan
+        if($request['kd_pertanyaan'][$key]) {
+          $data[$key] = [
+            'sasaran' => $request['sasaran'][$key],
+            'kd_pertanyaan' => $request['kd_pertanyaan'][$key],
+            'pertanyaan' => $request['pertanyaan'][$key],
+            'created_at' => $timestamp
+          ];
+        }
       }
     }
     return $data;
