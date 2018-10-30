@@ -5,7 +5,7 @@
   <div class="col-12 text-center text-sm-center mb-0">
     <img src="<?php echo e(asset('images/um_logo_blue_text.png')); ?>" width="240"><br/><br/>
     <span class="text-uppercase page-subtitle">SI Survei Kepuasan</span>
-    <h3 class="page-title">Jumlah Reponden</h3>
+    <h3 class="page-title">Jumlah Responden</h3>
   </div>
 </div>
 <!-- End Page Header -->
