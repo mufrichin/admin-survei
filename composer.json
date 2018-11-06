@@ -17,7 +17,8 @@
     "autoload": {
         "files": [
             "app/Helpers/Alert_helper.php",
-            "app/Helpers/Unit_fakultas_helper.php"
+            "app/Helpers/Unit_fakultas_helper.php",
+            "app/Helpers/Kategori_pertanyaan_helper.php"
         ],
         "classmap": [
             "database"

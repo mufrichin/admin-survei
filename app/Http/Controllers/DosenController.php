@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 Use Session;
+
 use App\Biodata_dosen;
 use App\Angket_dosen;
-use Illuminate\Support\Facades\DB;
+
+use App\Libraries\PseudoCrypt;
+
 
 
 class DosenController extends Controller
@@ -25,7 +29,7 @@ class DosenController extends Controller
           return redirect("/");
         }
         return $next($request);
-      })->except(["report", "responden", "get_datatable_responden"]);
+      })->except(["report", "responden", "get_datatable_responden", "jawaban"]);
     }
 
     public function index()
@@ -421,6 +425,8 @@ class DosenController extends Controller
 
     $data = []; $i = $params['start'];
     foreach ($data_db as $row) {
+      $hashed_nip = PseudoCrypt::hash($row->dosen_nip, 10);
+      $tgl = date('YmdHis', strtotime($row->created_at));
       $tbody   = []; 
       $tbody[] = ($i+1);
       $tbody[] = $row->nip;
@@ -430,7 +436,7 @@ class DosenController extends Controller
       $tbody[] = date("d-m-Y H:i", strtotime($row->created_at));
       $tbody[] = '<div>'
       .'<div class="btn-group">'
-      .'<a href="javascript:void(0);" class="btn btn-sm btn-outline-primary" onclick="showDetail(\''.$row->dosen_nip.'\',\''.$row->created_at.'\');" title="Lihat Detail"> <i class="fa fa-list"></i> </a>'
+      .'<a href="'.url("jawaban/dosen?nip=".$hashed_nip."&tgl=".$tgl).'" class="btn btn-sm btn-outline-primary" title="Lihat Detail Jawaban"> <i class="fa fa-list"></i> </a>'
       .'<a href="" class="btn btn-sm btn-outline-danger" onclick="prepDelete(\''.$row->dosen_nip.'\',\''.$row->created_at.'\');" title="Hapus data"> <i class="fa fa-trash-alt"></i> </a>'
       .'</div>'
       .'</div>';
@@ -446,4 +452,40 @@ class DosenController extends Controller
     );
     echo json_encode($json_data);
   }
+
+  function jawaban(Request $request) {
+    $nip = PseudoCrypt::unhash($request->nip);
+    $created_at = date("Y-m-d H:i:s", strtotime($request->tgl));
+    if($nip && $created_at) {
+      $db_responden = Biodata_dosen::where('nip', $nip)->first();
+      $db_jawaban = DB::table("public.pertanyaan_angket AS pertanyaan")
+      ->select("pertanyaan.kd_pertanyaan", "pertanyaan.pertanyaan", "pertanyaan.urutan", "jawaban.dosen_nip", "jawaban.kuesioner", "jawaban.value", "jawaban.created_at")
+      ->leftJoin('public.angket_dosen AS jawaban', function($join) use ($nip, $created_at) {
+        $join->on('pertanyaan.kd_pertanyaan', '=', 'jawaban.kuesioner');   
+        $join->on('jawaban.dosen_nip', '=', DB::raw("'".$nip."'"));
+        $join->on('jawaban.created_at', '=', DB::raw("'".$created_at."'"));
+      })
+      ->where('pertanyaan.sasaran', "dosen")
+      ->orderBy('pertanyaan.urutan', "asc")
+      ->orderBy('pertanyaan.kd_pertanyaan', "asc")
+      ->get();
+
+      $data_jawaban = [];
+      foreach ($db_jawaban as $key => $row) {
+        $data_jawaban[$row->kd_pertanyaan] = $row;
+      }
+
+      $data = array( 
+          'responden' => $db_responden,
+          'list_jawaban' => $data_jawaban,
+          'kategori_pertanyaan' => getKategoriPertanyaan('dosen'),
+          'opsi_kepuasan' => ['', 'Tidak Puas', 'Cukup Puas', 'Puas', 'Sangat Puas'],
+      );
+      return view('dosen/jawaban_responden', $data);
+    }
+    else {
+      abort(404);
+    }
+  }
+
 }

@@ -44,3 +44,5 @@ Route::post("pertanyaan/getPertanyaan", "PertanyaanController@getPertanyaan");
 Route::post("pertanyaan/simpanPertanyaan", "PertanyaanController@simpanPertanyaan");
 Route::post("pertanyaan/ubahPertanyaan", "PertanyaanController@ubahPertanyaan");
 Route::post("pertanyaan/hapusPertanyaan", "PertanyaanController@hapusPertanyaan");
+
+Route::get("jawaban/dosen/{nip?}/{tgl?}", "DosenController@jawaban");
