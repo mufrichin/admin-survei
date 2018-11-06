@@ -18,13 +18,14 @@
       <div class="card-header border-bottom">
         <h6 class="m-0">
           {{ $responden['nama'] or "Si Tanpa Nama" }}
+          <span class="float-right">{{ date('d-m-Y H:i', strtotime($_GET['tgl'])) }}</span>
           <small class="text-muted d-block">NIP: {{ $responden['nip'] or "-" }}</small>
         </h6>
       </div>
       <div class="card-body pt-0">
         <div class="row py-4">
           <div class="col-sm-4 col-md-2">
-            <ul class="list-group mb-4">
+            <ul class="list-group mb-4 pt-2 sticky-top">
               @php $num = 0; @endphp
               @foreach($kategori_pertanyaan as $nama_kategori => $kategori)
                 <a href="#kategori_{{ $num }}" class="list-group-item list-group-item-info">{{ $nama_kategori }}</a>

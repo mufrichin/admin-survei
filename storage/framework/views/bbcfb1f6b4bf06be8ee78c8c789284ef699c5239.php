@@ -17,13 +17,14 @@
         <h6 class="m-0">
           <?php echo e(isset($responden['nama']) ? $responden['nama'] : "Si Tanpa Nama"); ?>
 
+          <span class="float-right"><?php echo e(date('d-m-Y H:i', strtotime($_GET['tgl']))); ?></span>
           <small class="text-muted d-block">NIP: <?php echo e(isset($responden['nip']) ? $responden['nip'] : "-"); ?></small>
         </h6>
       </div>
       <div class="card-body pt-0">
         <div class="row py-4">
           <div class="col-sm-4 col-md-2">
-            <ul class="list-group mb-4">
+            <ul class="list-group mb-4 pt-2 sticky-top">
               <?php  $num = 0;  ?>
               <?php $__currentLoopData = $kategori_pertanyaan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $nama_kategori => $kategori): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <a href="#kategori_<?php echo e($num); ?>" class="list-group-item list-group-item-info"><?php echo e($nama_kategori); ?></a>
