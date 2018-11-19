@@ -16,6 +16,10 @@ Route::get("error", "Controller@error");
 
 Route::get('/', 'DashboardController@index');
 
+// Route::get('/login_admin', 'AdminController@login_admin');
+Route::get('/logout_admin', 'AdminController@logout_admin');
+Route::get('/check_session', 'AdminController@check_session');
+
 Route::get('rekapitulasi', 'AdminController@rekapitulasi');
 Route::get("rekap/dosen", "DosenController@report");
 Route::get("rekap/mahasiswa", "MahasiswaController@report");
@@ -46,3 +50,8 @@ Route::post("pertanyaan/ubahPertanyaan", "PertanyaanController@ubahPertanyaan");
 Route::post("pertanyaan/hapusPertanyaan", "PertanyaanController@hapusPertanyaan");
 
 Route::get("jawaban/dosen/{nip?}/{tgl?}", "DosenController@jawaban");
+
+//Middleware untuk SSO
+Route::group(['middleware' => 'samlauth'], function() {
+  Route::get('/login_admin', 'AdminController@login_admin');
+});

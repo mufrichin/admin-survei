@@ -7,7 +7,7 @@
   <div class="col-12 text-center text-sm-center mb-0">
     <img src="{{asset('images/um_logo_blue_text.png')}}" width="240"><br/><br/>
     <span class="text-uppercase page-subtitle">SI Survei Kepuasan</span>
-    <h3 class="page-title">Responden</h3>
+    <h3 class="page-title">Jumlah Responden</h3>
   </div>
 </div>
 <!-- End Page Header -->
@@ -45,7 +45,6 @@
         @else
         <a class="card-body p-0 d-flex" href="{{url('responden/mahasiswa')}}" >
          @endif
-
          <div class="d-flex flex-column m-auto" >
           <div class="stats-small__data text-center">
             <span class="stats-small__label text-uppercase">Mahasiswa</span>
@@ -55,7 +54,6 @@
             </div>
           </div>
         </div>
-        
         <canvas height="120" class="blog-overview-stats-small-2"></canvas>
       </a>
     </a>
@@ -143,7 +141,7 @@
 
        <div class="d-flex flex-column m-auto">
         <div class="stats-small__data text-center">
-
+          
           <span class="stats-small__label text-uppercase">Mitra</span>
           <h6 class="stats-small__value count my-3">{{ $count['mitra'] }}</h6>
           <div class="mask">

@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sistem Survei Kepuasan - Satuan Penjamin Mutu - Universitas Negeri Malang</title>
-  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" id="main-stylesheet" data-version="1.0.0" href="<?php echo asset('css/shards-dashboards.1.0.0.min.css'); ?>">
@@ -78,10 +78,10 @@
     <ul>
       <li><a href="<?php echo e(url('http://survei.um.ac.id')); ?>"><img id="main-logo" class="d-inline-block align-center mr-1" style="max-width: 27px;" src="<?php echo e(asset('images/um_logo.png')); ?>">  SIPUAS</a></li>
       <li><a href="<?php echo e(url('/')); ?>">
-        <i class="fa fa-home" aria-hidden="true"></i> Responden</a></li>
+        <i class="fa fa-home" aria-hidden="true"></i> Beranda</a></li>
       <li><a href="<?php echo e(url('/rekapitulasi')); ?>">
         <i class="fas fa-chart-pie"></i> Rekapitulasi</a></li>
-        <li><a href="<?php echo e(url('/responden')); ?>"><i class="fas fa-user"></i> Detail Responden</a></li>
+        <li><a href="<?php echo e(url('/responden')); ?>"><i class="fas fa-user"></i> Responden</a></li>
       </ul>
     </div>
 
