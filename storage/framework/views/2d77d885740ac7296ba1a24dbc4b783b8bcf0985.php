@@ -60,6 +60,9 @@
                     <th scope="col" class="border-0">Tahun Kerjasama</th>
                     <th scope="col" class="border-0">Tanggal Isi</th>
                     <th scope="col" class="border-0 no-sort">Aksi</th>
+                    <?php $__currentLoopData = $kode_angket; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                      <th scope="col" class="border-0" title="<?php echo e($item->pertanyaan); ?>"><?php echo e($item->kd_pertanyaan); ?></th>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </tr>
                 </thead>
                 <tbody></tbody>

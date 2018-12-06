@@ -62,6 +62,9 @@
                     <th scope="col" class="border-0">Tahun Kerjasama</th>
                     <th scope="col" class="border-0">Tanggal Isi</th>
                     <th scope="col" class="border-0 no-sort">Aksi</th>
+                    @foreach($kode_angket as $item)
+                      <th scope="col" class="border-0" title="{{$item->pertanyaan}}">{{ $item->kd_pertanyaan }}</th>
+                    @endforeach
                   </tr>
                 </thead>
                 <tbody></tbody>

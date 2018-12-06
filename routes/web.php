@@ -41,13 +41,14 @@ Route::post("responden/alumni/get_datatable", "AlumniController@get_datatable_re
 Route::post("responden/pengguna/get_datatable", "PenggunaController@get_datatable_responden");
 Route::post("responden/mitra/get_datatable", "MitraController@get_datatable_responden");
 
-//Pertanyaan
+//Pertanyaan (HIDDEN FEATURE, bisa diakses lewat url saja) ----
 Route::get('pertanyaan', "PertanyaanController@index");
 Route::get('pertanyaan/tambah', "PertanyaanController@tambah");
 Route::post("pertanyaan/getPertanyaan", "PertanyaanController@getPertanyaan");
 Route::post("pertanyaan/simpanPertanyaan", "PertanyaanController@simpanPertanyaan");
 Route::post("pertanyaan/ubahPertanyaan", "PertanyaanController@ubahPertanyaan");
 Route::post("pertanyaan/hapusPertanyaan", "PertanyaanController@hapusPertanyaan");
+//----
 
 Route::get("jawaban/dosen/{nip?}/{tgl?}", "DosenController@jawaban");
 
