@@ -260,40 +260,19 @@ class MitraController extends Controller
   }
 
   function responden() {
-    $data_kode_angket = DB::table('pertanyaan_angket')
-      ->select(DB::raw("kd_pertanyaan, pertanyaan"))
-      ->where('sasaran', 'mitra')
-      ->get();
-    $data['kode_angket'] = $data_kode_angket;
-    return view('mitra/responden', $data);
+    $data = array();
+    return view('mitra/responden');
   }
 
   function get_datatable_responden(Request $request) {
     $params = $request->all();
     // die(json_encode($params['fakultas']));
-    $columns = ['id', 'jabatan_pengisi', 'nama_instansi', 'no_telp', 'skala_operasional', 'tahun_kerjasama', 'created_at'];
+    $columns = ['id', 'jabatan_pengisi', 'nama_instansi', 'no_telp', 'skala_operasional', 'tahun_kerjasama', 'created_at', 'id'];
 
     $totalData = DB::table('angket_mitra')
     ->select(DB::raw("COUNT(id) AS jumlah_responden"))
     ->where('kuesioner', 'q1')
     ->count();
-
-    $data_kode_angket = DB::table('pertanyaan_angket')
-    ->select(DB::raw("kd_pertanyaan, pertanyaan"))
-    ->where('sasaran', 'mitra')
-    ->get();
-    $data_angket = DB::table('angket_mitra')
-    ->select(DB::raw("biodata_mitra_id, created_at, kuesioner, value"))
-    ->orderBy("kuesioner")
-    ->get();
-
-
-    $add_columns = [];
-    foreach ($data_kode_angket as $pertanyaan) {
-      $add_columns[] = $pertanyaan->kd_pertanyaan;
-    }
-    $columns = array_merge($columns, $add_columns);
-    $columns[] = 'id';
 
     $data_db = DB::table('angket_mitra')
     ->select(DB::raw('group1.biodata_mitra_id, group1.created_at, mitra.id, mitra.jabatan_pengisi, mitra.nama_instansi, mitra.no_telp, mitra.skala_operasional, mitra.tahun_kerjasama'))
@@ -323,33 +302,6 @@ class MitraController extends Controller
     $data_db->limit($params['length']);
     $data_db = $data_db->get();
 
-    // TESTER
-/*    print_r(json_encode($data_angket));
-    die();*/
-    //-------
-   /* $a = [
-      ['kd' => '1', 'name' => 'a'],
-      ['kd' => '2', 'name' => 'b']
-    ];
-    $b = [
-      ['kd' => '1', 'name' => 'a'],
-      ['kd' => '3', 'name' => 'b']
-    ];
-
-    $loop = 0;
-    for ($i=0; $i < 10 ; $i++) { 
-      foreach ($a as $key => $value) {
-        foreach ($b as $key2 => $value2) {
-          if($value['kd'] == $value2['kd']) {
-            unset($a[$key2]);
-          }
-          $loop++;
-        }
-      }
-    }
-    echo "Loops: ".$loop." times";
-    die();
-*/
     $data = []; $i = $params['start'];
     foreach ($data_db as $row) {
       $tbody   = []; 
@@ -360,24 +312,6 @@ class MitraController extends Controller
       $tbody[] = $row->skala_operasional;
       $tbody[] = $row->tahun_kerjasama;
       $tbody[] = date("d-m-Y H:i", strtotime($row->created_at));
-
-      $fill = false;
-      foreach ($data_angket as $key => $item) {
-        if(($row->created_at == $item->created_at) && ($row->biodata_mitra_id == $item->biodata_mitra_id)){
-          foreach ($data_kode_angket as $kode) {
-            if($item->kuesioner == $kode->kd_pertanyaan){
-              $tbody[] = $item->value;
-              $fill = true;
-              // unset($data_angket[$key]);
-            }
-          }
-        }
-
-        if($fill == false) {
-          $tbody[] = '-';
-        }
-      }
-
       $tbody[] = '<div>'
       .'<div class="btn-group">'
       .'<a href="javascript:void(0);" class="btn btn-sm btn-outline-primary" onclick="showDetail(\''.$row->biodata_mitra_id.'\',\''.$row->created_at.'\');" title="Lihat Detail"> <i class="fa fa-list"></i> </a>'
@@ -387,10 +321,6 @@ class MitraController extends Controller
 
       $data[] = $tbody; $i++;
     }
-/*
-    print_r(json_encode($tbody));
-    die();
-    */
     $totalData = count($data);
     $json_data = array(
       "draw"            => intval( $params['draw'] ),

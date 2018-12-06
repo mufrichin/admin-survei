@@ -61,6 +61,9 @@
                     <th scope="col" class="border-0">Skala Operasional</th>
                     <th scope="col" class="border-0">Tahun Kerjasama</th>
                     <th scope="col" class="border-0">Tanggal Isi</th>
+                    @foreach($kode_angket as $item)
+                      <th scope="col" class="border-0" title="{{$item->pertanyaan}}">{{ $item->kd_pertanyaan }}</th>
+                    @endforeach
                     <th scope="col" class="border-0 no-sort">Aksi</th>
                   </tr>
                 </thead>
