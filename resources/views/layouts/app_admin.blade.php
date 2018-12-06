@@ -81,7 +81,8 @@
         <i class="fa fa-home" aria-hidden="true"></i> Beranda</a></li>
       <li><a href="{{url('/rekapitulasi')}}">
         <i class="fas fa-chart-pie"></i> Rekapitulasi</a></li>
-        <li><a href="{{url('/responden')}}"><i class="fas fa-user"></i> Responden</a></li>
+      <li><a href="{{url('/responden')}}"><i class="fas fa-user"></i> Responden</a></li>
+      <li><a href="{{url('/export')}}"><i class="fas fa-print"></i> Export</a></li>
       </ul>
     </div>
 

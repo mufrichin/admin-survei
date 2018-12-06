@@ -51,6 +51,9 @@ Route::post("pertanyaan/hapusPertanyaan", "PertanyaanController@hapusPertanyaan"
 
 Route::get("jawaban/dosen/{nip?}/{tgl?}", "DosenController@jawaban");
 
+//Export
+Route::get("export", "RekapController@index");
+
 //Middleware untuk SSO
 Route::group(['middleware' => 'samlauth'], function() {
   Route::get('/login_admin', 'AdminController@login_admin');
